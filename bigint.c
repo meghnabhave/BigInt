@@ -98,9 +98,9 @@ bigInt enterbigint()
 	
 	int i=0,j=0;
 	int length = strlen(number);
-	//int n1=length/9; //no of nodes in bigint list -1
 	int n2=length%9; //no of digits in msb
-	//int n3=n2;
+	if(n2 == 0)
+	n2=9;
 	int n;
 	num=(char*)malloc(9);
 	while(j<n2)
