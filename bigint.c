@@ -164,11 +164,36 @@ bigInt add(bigInt *b, bigInt *n)
 		free(nptr);
 
 		result.s=n->s ;	
+	}
+	else  //for subtraction
+	{
+			
 	} 
 
 	return(result);
 	
 }
+
+void comprr(digit9 *num1,digit9 *num2,int *flag)
+{
+	if(*flag==0 && num1!=NULL && num2!=NULL)
+	{
+		comprr(num1->next,num2->next,flag);
+		if(num1->d > num2->d)
+		*flag=1;
+		else if(num1->d < num2->d)
+		*flag=-1;
+	}
+}
+
+//compares num1 and num2
+int compare(bigInt num1, bigInt num2)
+{
+	int flag=0;
+	comprr(num1.number,num2.number,&flag);
+	return(flag);
+}
+	
 
 //displays bigint
 void display(digit9 *num)
@@ -211,6 +236,21 @@ void main()
 
 	printbigint(result);
 	printf("\n");
+
+	if(compare(num1,num2)==0)
+	{
+		printf("\nEqual\n");
+	}
+	else if(compare(num1,num2)==1)
+	{
+		printbigint(num1);
+		printf(" is greater.\n");
+	}
+	else
+	{
+		printbigint(num2);
+		printf(" is greater.\n");
+	}
 }
 
 
