@@ -64,30 +64,6 @@ int ctoi(char *num,int length)
 }
 
 //to fill the linked list bigint->number
-/*bigInt enterbigint()
-{
-	bigInt b;
-	int n;
-	b.number=NULL;
-	digit9 *nptr;
-	printf("Enter sign of the number: 0 for negative, 1 for positive\n");
-	scanf("%d",&n);
-	if(n==0) b.s=negative;
-	else b.s=positive;
-	
-	printf("Enter 9 digits and press enter: \n Press negative number if done with numbers.");
-	
-	scanf("%d",&n);
-	while(n>=0)	
-	{
-		nptr=makenode(n);
-		nptr->next=b.number;
-		b.number=nptr;
-		scanf("%d",&n);
-	}
-	return(b);
-}*/
-
 bigInt enterbigint()
 {
 	bigInt b;
