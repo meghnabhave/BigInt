@@ -1,6 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 #define BASE 1000000000
+
+int power(int x,int y)
+{
+	int i,pow=1;
+	for(i=0;i<y;i++)
+	pow=pow*x;
+	
+	return(pow);
+}
 
 //to define sign of the bigint
 typedef enum{negative,positive} SIGN;
@@ -9,6 +19,7 @@ typedef enum{negative,positive} SIGN;
 typedef struct digit9_tag{
 	int d;
 	struct digit9_tag *next;
+	int base;
 } digit9;
 
 //wrapping number and sign. number is a linked list with least significant bit at the head
@@ -28,8 +39,32 @@ digit9* makenode(int n)
 	return(nptr);
 }
 
+//
+char* enter()
+{	
+	char *number;
+	number=(char*)malloc(1*300);
+	printf("Enter your big integer: ");	
+	scanf("%s",number);
+
+	return(number);
+}
+
+int ctoi(char *num,int length)
+{
+	int p = power(10,length-1);
+	int number=0,i=0;
+	while(p >= 1)
+	{
+		number=number+ ((num[i]-'0')*p);
+		i++;
+		p=p/10;
+	}
+	return(number);
+}
+
 //to fill the linked list bigint->number
-bigInt enterbigint()
+/*bigInt enterbigint()
 {
 	bigInt b;
 	int n;
@@ -51,6 +86,48 @@ bigInt enterbigint()
 		scanf("%d",&n);
 	}
 	return(b);
+}*/
+
+bigInt enterbigint()
+{
+	bigInt b;
+	b.number=NULL;
+	digit9 *nptr;
+	char* number,*num;
+	number = enter();  //enter whole number at once
+	
+	int i=0,j=0;
+	int length = strlen(number);
+	//int n1=length/9; //no of nodes in bigint list -1
+	int n2=length%9; //no of digits in msb
+	//int n3=n2;
+	int n;
+	num=(char*)malloc(9);
+	while(j<n2)
+	{
+		num[j]=number[i];
+		j++; i++;
+	}
+	n=ctoi(num,n2);
+	nptr=makenode(n);
+	nptr->next=b.number;
+	b.number=nptr;
+	while(i<length)
+	{
+		j=0;	
+		while(j<9)
+		{
+			num[j]=number[i];
+			j++; i++;
+		}
+		n=ctoi(num,9);
+		nptr=makenode(n);
+		nptr->next=b.number;
+		b.number=nptr;
+		
+	}
+	return(b);
+		
 }
 
 //adds both negative or both positive numbers
@@ -71,6 +148,7 @@ bigInt add(bigInt *b, bigInt *n)
 		p2=n->number;
 		while(p1 && p2)
 		{
+			
 			add=p1->d + p2->d + carry;
 			carry = add/BASE;
 			add = add%BASE;	
