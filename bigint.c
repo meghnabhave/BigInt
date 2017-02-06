@@ -188,8 +188,6 @@ void printbigint(bigInt b)
 	display(b.number);
 	else
 	printf("0");
-	
-	printf("\n");
 
 }
 
@@ -202,13 +200,15 @@ void main()
 	num2 = enterbigint();
 
 	printbigint(num1);
-	printf("\n+");
-	printbigint(num2);	
+	printf(" + ");
+	printbigint(num2);
+	printf(" = ");	
 	
 	bigInt result;
 	result=add(&num1,&num2);
 
 	printbigint(result);
+	printf("\n");
 }
 
 
