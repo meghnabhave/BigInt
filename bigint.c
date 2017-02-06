@@ -39,17 +39,18 @@ digit9* makenode(int n)
 	return(nptr);
 }
 
-//
+//to enter the string of numbers.
 char* enter()
 {	
 	char *number;
-	number=(char*)malloc(1*300);
+	number=(char*)malloc(300);
 	printf("Enter your big integer: ");	
 	scanf("%s",number);
 
 	return(number);
 }
 
+//converts character string to numbers
 int ctoi(char *num,int length)
 {
 	int p = power(10,length-1);
@@ -180,6 +181,7 @@ void display(digit9 *num)
 	
 } 
 
+//displays bigint, uses display
 void printbigint(bigInt b)
 {
 	if(b.s == negative && b.number != NULL)
