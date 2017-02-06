@@ -2,18 +2,23 @@
 #include<stdlib.h>
 #define BASE 1000000000
 
+//to define sign of the bigint
 typedef enum{negative,positive} SIGN;
 
+//each digit of a bigint is said to be 9 digits of a integer. base 10^9 
 typedef struct digit9_tag{
 	int d;
 	struct digit9_tag *next;
 } digit9;
 
+//wrapping number and sign. number is a linked list with least significant bit at the head
 typedef struct bigInt_tag{
 	digit9 *number;
 	SIGN s;
 } bigInt;
 
+
+//abstracting out the function for making a node
 digit9* makenode(int n)
 {
 	digit9 *nptr;
@@ -23,10 +28,11 @@ digit9* makenode(int n)
 	return(nptr);
 }
 
+//to fill the linked list bigint->number
 bigInt enterbigint()
 {
 	bigInt b;
-		int n;
+	int n;
 	b.number=NULL;
 	digit9 *nptr;
 	printf("Enter sign of the number: 0 for negative, 1 for positive\n");
@@ -48,7 +54,6 @@ bigInt enterbigint()
 }
 
 //adds both negative or both positive numbers
-
 bigInt add(bigInt *b, bigInt *n)
 {
 	bigInt result;
@@ -110,9 +115,46 @@ bigInt add(bigInt *b, bigInt *n)
 	
 }
 
+//displays bigint
+void display(digit9 *num)
+{
+	if(num!=NULL)
+	{
+		display(num->next);
+		printf("%d",num->d);
+	}	
+	
+} 
+
+void printbigint(bigInt b)
+{
+	if(b.s == negative && b.number != NULL)
+	printf("-");
+	if(b.number != NULL)
+	display(b.number);
+	else
+	printf("0");
+	
+	printf("\n");
+
+}
+
 void main()
 {
 	printf("What's up!? \n");
+	
+	bigInt num1,num2;
+	num1 = enterbigint();
+	num2 = enterbigint();
+
+	printbigint(num1);
+	printf("\n+");
+	printbigint(num2);	
+	
+	bigInt result;
+	result=add(&num1,&num2);
+
+	printbigint(result);
 }
 
 
