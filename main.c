@@ -3,6 +3,7 @@
 #include<string.h>
 #define BASE 1000000000
 
+//finds x to power y
 int power(int x,int y)
 {
 	int i,pow=1;
@@ -19,7 +20,6 @@ typedef enum{negative,positive} SIGN;
 typedef struct digit9_tag{
 	int d;
 	struct digit9_tag *next;
-	int base;
 } digit9;
 
 //wrapping number and sign. number is a linked list with least significant bit at the head
