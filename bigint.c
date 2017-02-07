@@ -178,11 +178,13 @@ void comprr(digit9 *num1,digit9 *num2,int *flag)
 {
 	if(*flag==0 && num1!=NULL && num2!=NULL)
 	{
+		
 		comprr(num1->next,num2->next,flag);
 		if(num1->d > num2->d)
 		*flag=1;
 		else if(num1->d < num2->d)
-		*flag=-1;
+		*flag=-3;
+		
 	}
 }
 
@@ -226,7 +228,7 @@ void main()
 	num1 = enterbigint();
 	num2 = enterbigint();
 
-	printbigint(num1);
+	/*printbigint(num1);
 	printf(" + ");
 	printbigint(num2);
 	printf(" = ");	
@@ -235,7 +237,7 @@ void main()
 	result=add(&num1,&num2);
 
 	printbigint(result);
-	printf("\n");
+	printf("\n");*/
 
 	if(compare(num1,num2)==0)
 	{
