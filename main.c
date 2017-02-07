@@ -120,6 +120,8 @@ bigInt enterbigint()
 		b.number=nptr;
 		
 	}
+	free(number);
+	free(num);
 	return(b);
 		
 }
@@ -197,6 +199,12 @@ bigInt add(bigInt *b, bigInt *n)
 			tail->next=nptr;
 			tail=nptr;
 			p2=p2->next;
+		}
+		if(carry!=0)
+		{
+			nptr=makenode(carry);
+			tail->next=nptr;
+			tail=nptr;
 		}	
 		tail->next = NULL;
 	
