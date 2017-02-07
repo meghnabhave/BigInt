@@ -124,6 +124,30 @@ bigInt enterbigint()
 		
 }
 
+void comprr(digit9 *num1,digit9 *num2,int *flag)
+{
+	if(*flag==0 && num1!=NULL && num2!=NULL)
+	{
+		
+		comprr(num1->next,num2->next,flag);
+		if(*flag==0)
+		{
+			if(num1->d > num2->d)
+			*flag=1;
+			else if(num1->d < num2->d)
+			*flag=-1;
+		}		
+	}
+}
+
+//compares num1 and num2 (only magnitudes)
+int compare(bigInt num1, bigInt num2)
+{
+	int flag=0;
+	comprr(num1.number,num2.number,&flag);
+	return(flag);
+}
+
 //adds both negative or both positive numbers
 bigInt add(bigInt *b, bigInt *n)
 {
@@ -247,29 +271,50 @@ bigInt add(bigInt *b, bigInt *n)
 	return(result);	
 }
 
-void comprr(digit9 *num1,digit9 *num2,int *flag)
+
+//Multiplies b and n
+bigInt Multiplication(bigInt b,bigInt n)
 {
-	if(*flag==0 && num1!=NULL && num2!=NULL)
+	bigInt result;
+	if(b.number==NULL || n.number==NULL)
 	{
-		
-		comprr(num1->next,num2->next,flag);
-		if(*flag==0)
-		{
-			if(num1->d > num2->d)
-			*flag=1;
-			else if(num1->d < num2->d)
-			*flag=-1;
-		}		
+		result.number=NULL;
+		result.s=positive;
 	}
+	else
+	{
+		if(b.s == n.s)
+		result.s=positive;
+		else
+		result.s=negative;	
+		int cmpr;
+		cmpr=compare(b,n);
+		bigInt P,Q;
+		if(cmpr>0)
+		{
+			Q=n;
+			P=b;
+		}
+		else
+		{
+			Q=b;
+			P=n;
+		}
+		P.s=Q.s=positive;
+		bigInt minusone;
+		minusone.s=negative;
+		minusone.number=makenode(1);
+		result.number=NULL;
+		while(Q.number!=NULL)
+		{
+			result=add(&result,&P);
+			Q=add(&Q,&minusone);
+		}
+	}
+	return(result);
 }
 
-//compares num1 and num2 (only magnitudes)
-int compare(bigInt num1, bigInt num2)
-{
-	int flag=0;
-	comprr(num1.number,num2.number,&flag);
-	return(flag);
-}
+
 	
 
 //displays bigint
@@ -311,6 +356,16 @@ void main()
 	bigInt result;
 	result=add(&num1,&num2);
 	printbigint(result);
+	printf("\n");
+
+	printbigint(num1);
+	printf(" X ");
+	printbigint(num2);
+	printf(" = ");	
+	
+	bigInt product;
+	product=Multiplication(num1,num2);
+	printbigint(product);
 	printf("\n");
 
 	/**if(compare(num1,num2)==0)
