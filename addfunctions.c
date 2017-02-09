@@ -1,7 +1,10 @@
+#include<stdio.h>
+#include"helper.h"
+#include"definitions.h"
 #include "addfunctions.h"
 
-//adds both negative or both positive numbers
-bigInt add(bigInt *b, bigInt *n)
+//adds given bigInts
+bigInt Add(bigInt *b, bigInt *n)
 {
 	bigInt result;
 	if(b->number == NULL)

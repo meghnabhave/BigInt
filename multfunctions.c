@@ -4,8 +4,7 @@
 #include"addfunctions.h"
 #include"helper.h"
 
-
-
+//stores result of multiplication of two nodes along with power in a linked list. 
 bigInt enterformult(unsigned long long int res,int pow)
 {
 	bigInt b;
@@ -48,7 +47,7 @@ bigInt enterformult(unsigned long long int res,int pow)
 
 
 //multiply node with node
-//n1 is node jiska digits multiply hoga with whole of n2
+//n1 is node whose digits multiply with whole of n2
 bigInt NodexNode(digit9 *num1, digit9 *num2)
 {
 	bigInt result,temp;
@@ -65,7 +64,7 @@ bigInt NodexNode(digit9 *num1, digit9 *num2)
 	{
 		res=n2*rem;
 		temp=enterformult(res,pow);
-		result=add(&result,&temp);
+		result=Add(&result,&temp);
 		n1=n1/10;
 		rem=n1%10;
 		pow++;
@@ -74,6 +73,7 @@ bigInt NodexNode(digit9 *num1, digit9 *num2)
 	return result;
 }
 
+//multiplies a node with a bigInteger number(linked list). Calls NodexNode() function.
 bigInt NodexBigInt(digit9 *num1,bigInt num2)
 {
 	bigInt temp,result,carry;
@@ -93,7 +93,7 @@ bigInt NodexBigInt(digit9 *num1,bigInt num2)
 			p->next=temp.number;
 			temp.number=p;
 		}
-		result=add(&result,&temp);
+		result=Add(&result,&temp);
 		
 		pow++;
 		nptr=nptr->next;
@@ -102,14 +102,12 @@ bigInt NodexBigInt(digit9 *num1,bigInt num2)
 	return(result);	
 }
 
+//multiplies two bigInts. Calls NodexBigInt()
 bigInt Multiplication(bigInt num1, bigInt num2)
 {
 	bigInt result,temp;
 	result.number=NULL;
-	if(num1.s == num2.s)
 	result.s=positive;
-	else
-	result.s=negative;
 	
 	temp.number=NULL;
 	temp.s=positive;
@@ -127,9 +125,14 @@ bigInt Multiplication(bigInt num1, bigInt num2)
 			p->next=temp.number;
 			temp.number=p;
 		}
-		result=add(&result,&temp);
+		result=Add(&result,&temp);
 		pow++;
 		n2=n2->next;		
 	}
+	
+	if(num1.s == num2.s)
+	result.s=positive;
+	else
+	result.s=negative;
 	return(result);
 }

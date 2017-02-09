@@ -36,6 +36,7 @@ unsigned long long int ctoi(char *num,int length)
 	return(number);
 }
 
+//recursive function to print from MSB(last node of linked list) to LSB(first node of linked list
 void comprr(digit9 *num1,digit9 *num2,int *flag)
 {
 	if(*flag==0 && num1!=NULL && num2!=NULL)
@@ -60,6 +61,32 @@ int compare(bigInt num1, bigInt num2)
 	return(flag);
 }
 
+//compares num1 and num2 (signed values too)
+int Compare(bigInt num1, bigInt num2)
+{
+	int flag;
+	if(num1.s==num2.s)
+	{
+		flag=0;
+		comprr(num1.number,num2.number,&flag);	
+		if(num1.s == negative)
+		{
+			flag=-flag;
+		}
+		
+	}
+	else if(num1.s == positive && num2.s == negative)
+	{
+		flag=1;
+	}
+	else
+	{
+		flag=-1;
+	}
+	return(flag);
+}
+
+//This function deletes nodes having zero preceding the number. Called before printing the bigInt.
 void rearrange(bigInt num)
 {
 	if(num.number!=NULL)
@@ -78,7 +105,6 @@ void rearrange(bigInt num)
 		{
 			free(nptr);
 			num.number=NULL;
-			num.s=positive;
 		}
 		if(nptr->d == 0)
 		{
