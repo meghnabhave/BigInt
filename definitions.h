@@ -7,7 +7,7 @@
 //to define sign of the bigint
 typedef enum{negative,positive} SIGN;
 
-//each digit of a bigint is said to be 9 digits of a integer. base 10^9 
+//each digit of a bigint is said to be 17 digits of a integer. base 10^17
 typedef struct digit9_tag{
 	unsigned long long int d;
 	struct digit9_tag *next;
