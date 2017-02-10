@@ -1,24 +1,28 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include"helper.h"
 #include"definitions.h"
-#include "addfunctions.h"
+#include "bigIntLibrary.h"
+
 
 //adds given bigInts
-bigInt Add(bigInt *b, bigInt *n)
+bigInt Add(bigInt b, bigInt n)
 {
+	//b=rearrange(b);
+	//n=rearrange(n);
 	bigInt result;
-	if(b->number == NULL)
-	result=*n;
-	else if(n->number == NULL)
-	result=*b;
-	else if(n->s == b->s)
+	if(b.number == NULL)
+	result=n;
+	else if(n.number == NULL)
+	result=b;
+	else if(n.s == b.s)
 	{
 		result.number=makenode(0); //dummy node
 		digit9 *p1,*p2,*nptr,*tail;
 		tail = result.number;
 		long long int add,carry=0;
-		p1=b->number;
-		p2=n->number;
+		p1=b.number;
+		p2=n.number;
 		while(p1 && p2)
 		{
 			
@@ -65,12 +69,12 @@ bigInt Add(bigInt *b, bigInt *n)
 		result.number = result.number->next;
 		free(nptr);
 
-		result.s=n->s ;	
+		result.s=n.s ;	
 	}
 	else  //for subtraction
 	{
 		digit9 *large, *small;	
-		int cmpr=compare(*b,*n);
+		int cmpr=compare(b,n);
 		if(cmpr == 0)
 		{
 			result.number=NULL;
@@ -79,14 +83,14 @@ bigInt Add(bigInt *b, bigInt *n)
 		else if(cmpr>0)
 		{
 			result.s=positive;
-			large=b->number;
-			small=n->number;
+			large=b.number;
+			small=n.number;
 		}
 		else
 		{
 			result.s=negative;
-			large=n->number;
-			small=b->number;
+			large=n.number;
+			small=b.number;
 		}
 		if(cmpr!=0)
 		{

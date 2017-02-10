@@ -2,6 +2,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include"helper.h"
+#include "bigIntLibrary.h"
+
 //finds x to power y
 unsigned long long int power(int x,int y)
 {
@@ -65,7 +67,7 @@ int compare(bigInt num1, bigInt num2)
 int Compare(bigInt num1, bigInt num2)
 {
 	int flag;
-	if(num1.s==num2.s)
+	if(num1.s==num2.s && num1.number!=NULL && num2.number!=NULL)
 	{
 		flag=0;
 		comprr(num1.number,num2.number,&flag);	
@@ -79,15 +81,37 @@ int Compare(bigInt num1, bigInt num2)
 	{
 		flag=1;
 	}
-	else
+	else if(num2.s == positive && num1.s == negative)
 	{
 		flag=-1;
+	}
+	else
+	{
+		if(num1.number==NULL)
+		{
+			if(num2.number!=NULL && num2.s==positive)
+			flag=-1;
+			else if(num2.number!=NULL && num2.s==negative)
+			flag=1;
+			else if(num2.number==NULL)
+			flag=0;
+		}
+		else if(num2.number==NULL)
+		{
+			if(num1.number!=NULL && num1.s==positive)
+			flag=1;
+			else if(num1.number!=NULL && num1.s==negative)
+			flag=-1;
+			else if(num2.number==NULL)
+			flag=0;
+		}
 	}
 	return(flag);
 }
 
+
 //This function deletes nodes having zero preceding the number. Called before printing the bigInt.
-void rearrange(bigInt num)
+bigInt rearrange(bigInt num)
 {
 	if(num.number!=NULL)
 	{
@@ -106,10 +130,11 @@ void rearrange(bigInt num)
 			free(nptr);
 			num.number=NULL;
 		}
-		if(nptr->d == 0)
+		else if(nptr->d == 0)
 		{
 			prev->next=nptr->next;
 			free(nptr);
 		}
 	}
+	return(num);
 }

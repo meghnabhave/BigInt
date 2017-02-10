@@ -4,6 +4,7 @@
 #include"definitions.h"
 #define BASE 100000000000000000
 
+
 //to define sign of the bigint
 typedef enum{negative,positive} SIGN;
 

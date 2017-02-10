@@ -1,6 +1,5 @@
 #ifndef LIB
 #define LIB
-#include"addfunctions.h"
 #include"helper.h"
 #include"iodata.h"
 #include"multfunctions.h"
@@ -9,7 +8,8 @@
 int Compare(bigInt num1, bigInt num2);
 bigInt enterbigint();
 void printbigint(bigInt b);
-bigInt add(bigInt *b, bigInt *n);
+bigInt Add(bigInt b, bigInt n);
 bigInt Multiplication(bigInt num1, bigInt num2);
+
 
 #endif

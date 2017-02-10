@@ -4,6 +4,7 @@
 #include<stdio.h>
 #include "definitions.h"
 
+
 bigInt enterformult(unsigned long long int res,int pow);
 bigInt NodexNode(digit9 *num1, digit9 *num2);
 bigInt Multiplication(bigInt num1, bigInt num2);

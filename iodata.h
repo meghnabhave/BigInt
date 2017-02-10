@@ -1,6 +1,7 @@
 #ifndef IODATA
 #define IODATA
 
+
 #include<stdio.h>
 #include"definitions.h"
 char* enter();

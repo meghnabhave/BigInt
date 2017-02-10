@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include"multfunctions.h"
 #include"definitions.h"
-#include"addfunctions.h"
+#include "bigIntLibrary.h"
 #include"helper.h"
 
 //stores result of multiplication of two nodes along with power in a linked list. 
@@ -64,7 +64,7 @@ bigInt NodexNode(digit9 *num1, digit9 *num2)
 	{
 		res=n2*rem;
 		temp=enterformult(res,pow);
-		result=Add(&result,&temp);
+		result=Add(result,temp);
 		n1=n1/10;
 		rem=n1%10;
 		pow++;
@@ -93,7 +93,7 @@ bigInt NodexBigInt(digit9 *num1,bigInt num2)
 			p->next=temp.number;
 			temp.number=p;
 		}
-		result=Add(&result,&temp);
+		result=Add(result,temp);
 		
 		pow++;
 		nptr=nptr->next;
@@ -102,37 +102,45 @@ bigInt NodexBigInt(digit9 *num1,bigInt num2)
 	return(result);	
 }
 
+
 //multiplies two bigInts. Calls NodexBigInt()
 bigInt Multiplication(bigInt num1, bigInt num2)
 {
+	//num1=rearrange(num1);
+	//num2=rearrange(num2);
 	bigInt result,temp;
 	result.number=NULL;
 	result.s=positive;
 	
-	temp.number=NULL;
-	temp.s=positive;
-	
-	digit9 *n2=num2.number;
-	digit9 *p;
-	int pow=0,i;
-	
-	while(n2!=NULL)
+	if(num1.number!=NULL && num2.number!=NULL)
 	{
-		temp=NodexBigInt(n2,num1);
-		for(i=0;i<pow;i++)
+
+		temp.number=NULL;
+		temp.s=positive;
+		
+		digit9 *n2=num2.number;
+		digit9 *p;
+		int pow=0,i;
+		
+		while(n2!=NULL)
 		{
-			p=makenode(0);
-			p->next=temp.number;
-			temp.number=p;
+			temp=NodexBigInt(n2,num1);
+			for(i=0;i<pow;i++)
+			{
+				p=makenode(0);
+				p->next=temp.number;
+				temp.number=p;
+			}
+			result=Add(result,temp);
+			pow++;
+			n2=n2->next;		
 		}
-		result=Add(&result,&temp);
-		pow++;
-		n2=n2->next;		
+		
+		if(num1.s == num2.s)
+		result.s=positive;
+		else
+		result.s=negative;
 	}
-	
-	if(num1.s == num2.s)
-	result.s=positive;
-	else
-	result.s=negative;
 	return(result);
 }
+

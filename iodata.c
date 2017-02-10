@@ -4,6 +4,7 @@
 #include"definitions.h"
 #include"iodata.h"
 #include"helper.h"
+#include "bigIntLibrary.h"
 
 //to enter the string of numbers.
 char* enter()
@@ -76,9 +77,11 @@ bigInt enterbigint()
 	}
 	free(number);
 	free(num);
+	b=rearrange(b);
 	return(b);
 		
 }
+
 
 //displays bigint
 void display(digit9 *num)
@@ -94,7 +97,7 @@ void display(digit9 *num)
 //displays bigint, uses display
 void printbigint(bigInt b)
 {
-	rearrange(b);
+	b=rearrange(b);
 	if(b.s == negative && b.number != NULL)
 	printf("-");
 	if(b.number != NULL)

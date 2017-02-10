@@ -16,7 +16,7 @@ void main()
 	printf(" = ");	
 	
 	bigInt result;
-	result=Add(&num1,&num2);
+	result=Add(num1,num2);
 	printbigint(result);
 	printf("\n");
 
@@ -29,12 +29,13 @@ void main()
 	product=Multiplication(num1,num2);
 	printbigint(product);
 	printf("\n");
-
-	if(Compare(num1,num2)==0)
+	
+	int a=Compare(num1,num2);
+	if(a==0)
 	{
 		printf("\nEqual\n");
 	}
-	else if(Compare(num1,num2)==1)
+	else if(a==1)
 	{
 		printbigint(num1);
 		printf(" is greater.\n");
@@ -45,3 +46,4 @@ void main()
 		printf(" is greater.\n");
 	}
 }
+
