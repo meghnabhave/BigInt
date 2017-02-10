@@ -22,8 +22,7 @@ enterbigint() -> a function to take input from user. Available in bigIntLibrary.
 
 printbigint(bigInt b) -> a function to print the bigInt passed as parameter in appropriate format. Available in bigIntLibrary.h. The function internally calls display() which is a recursive function to print the numbers from MSB to LSB. 
 
-Add(bigInt *num1, bigInt *num2) -> a funtion to add the num1 and num2, bigInts passed as parameters, and return the sum. Available in bigIntLibrary.h. The function adds each digit9 (node) of the linked list, and stores the carry of the result in a variable, and result of the addition in another linked list. Subttraction is also implemented by supplying negative sign of one of the operands. The resultant linked list is returned to the calling function.
-Note: The parameters may also be passed by value. It will just change if the elements of the structure are being accesed using the -> operator or . operator inside the function. The logic of the add operation is not dependent on the pass by reference. 
+Add(bigInt num1, bigInt num2) -> a funtion to add the num1 and num2, bigInts passed as parameters, and return the sum. Available in bigIntLibrary.h. The function adds each digit9 (node) of the linked list, and stores the carry of the result in a variable, and result of the addition in another linked list. Subttraction is also implemented by supplying negative sign of one of the operands. The resultant linked list is returned to the calling function.
 
 Multiplication(bigInt num1, bigInt num2) -> a function to multiply num1 and num2, bigInts passed as parameters to the function. Available in bigIntLibrary.h. The functions calls a function NodexBigInt() which in turn calls NodexNode() which in turn calls enterformult(). The result of the multiplication is returned as a bigInt by the function. 
 
