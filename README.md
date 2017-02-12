@@ -3,6 +3,8 @@ This is an implementation of big integers (size more than long or long long).
 It can store arbitrary size of integers. 
 Uses linked list, and a base 10^17 number system. 
 
+To Compile: run 'make all' 
+
 The big integer is divided into different smaller parts each having 17 digits,starting from the LSB.
 I chose the number 17 because the maximum value that a 64 bit unsigned integer can hold is 2^64-1, which is a 20 digit number. Choosing 17 digits instead of 20 optimises on space and gives wiggle room to perform multiplication operations.
 
@@ -32,7 +34,7 @@ Compare(bigInt num1, bigInt num2) -> a function to compare num1 and num2. Availa
               1 if num1>num2
               
               
-This is it for the explanation of this project. Please suggest changes or improvements if any. Constructive criticism is always welcome.
+This is it for the explanation of this project. 
               
               
 
