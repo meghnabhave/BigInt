@@ -1,6 +1,10 @@
 #include<stdio.h>
 
-#include"bigIntLibrary.h"
+#include"definitions.h"
+#include"addfunctions.h"
+#include"multfunctions.h"
+#include"helper.h"
+#include"iodata.h"
 
 void main()
 {

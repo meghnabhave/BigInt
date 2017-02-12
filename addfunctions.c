@@ -1,8 +1,10 @@
+#include"addfunctions.h"
+
 #include<stdio.h>
 #include<stdlib.h>
+
 #include"helper.h"
 #include"definitions.h"
-#include "bigIntLibrary.h"
 
 
 //adds given bigInts

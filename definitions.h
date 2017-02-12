@@ -1,7 +1,6 @@
 #ifndef DEF
 #define DEF
 
-#include"definitions.h"
 #define BASE 100000000000000000
 
 

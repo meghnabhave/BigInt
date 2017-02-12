@@ -1,10 +1,12 @@
+#include"iodata.h"
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"definitions.h"
-#include"iodata.h"
+
 #include"helper.h"
-#include "bigIntLibrary.h"
+
 
 //to enter the string of numbers.
 char* enter()

@@ -3,6 +3,7 @@
 
 #include<stdio.h>
 #include "definitions.h"
+#include "addfunctions.h"
 
 
 bigInt enterformult(unsigned long long int res,int pow);

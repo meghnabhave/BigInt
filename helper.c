@@ -1,8 +1,9 @@
+#include"helper.h"
 
 #include<stdio.h>
 #include<stdlib.h>
-#include"helper.h"
-#include "bigIntLibrary.h"
+
+#include"definitions.h"
 
 //finds x to power y
 unsigned long long int power(int x,int y)
